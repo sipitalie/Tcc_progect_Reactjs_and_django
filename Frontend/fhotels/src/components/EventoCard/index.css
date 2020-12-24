@@ -9,7 +9,13 @@
     padding: 10px 10px;
     box-shadow: 5px 0 3px rgba(0, 0, 0, 0.1),
      0 -3px 5px rgba(0, 0, 0, 0.1),
-     0 3px 5px rgba(0, 0, 0, 0.1);  
+     0 3px 5px rgba(0, 0, 0, 0.1); 
+   
+}
+.btn-Delete{
+    background-color:transparent;
+    border:none; 
+
 }
 
 .title-hotel {

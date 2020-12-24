@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 //import {FiMapPin, FiWifi,} from 'react-icons/fi';
+import { MdDelete }  from "react-icons/md";
 import { FaBell}  from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import './index.css';
@@ -14,7 +15,9 @@ export default function EventCard({evento}){
       }
     return(
         <div className="Evento-card">
+            <button className="btn-Delete"><MdDelete/></button>
             <div className="title-hotel">
+                
                 <h1>Nome do Hotel</h1>
                 <h2>{evento.title}</h2>     
             </div>

@@ -2,7 +2,8 @@
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#SITE_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'reclamacoes',
     'ImagensPerfil',
     'seguir',
+    'Notify.apps.NotifyConfig',
 
 
 
@@ -65,8 +67,9 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'account.Account'
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -167,6 +170,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR, 'staticfiles')
-
-##STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

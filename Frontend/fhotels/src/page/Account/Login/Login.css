@@ -116,7 +116,8 @@ form input{
 @media (min-width: 320px){
     .login-container{
         height: 420px;
-        width: 310px;           
+        width: 310px;  
+                
     }   
 }
 @media (min-width: 360px){

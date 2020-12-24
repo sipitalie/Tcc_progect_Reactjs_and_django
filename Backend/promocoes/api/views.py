@@ -26,6 +26,7 @@ class PromotionList(APIView):
             Promocao=serializer.save()
             data={}
             data["Response"]="registro salvo com sucesso"
+            data["data"]=serializer.data
             return Response(data,status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)

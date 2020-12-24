@@ -1,15 +1,17 @@
 import React from 'react';
-import './index.css';
+import {EvaluationInfo , Container} from './styles';
 
 export default function AvalCard({avaliacao}){
     console.log(avaliacao)
     return(
-        <div className="avaliação-card">
-            <div className="avaliação-id">
-                <h6>{avaliacao.User}</h6>
-                <p>{avaliacao.nota}</p>
-            </div>
-                                  
-        </div> 
+        <Container>
+                <EvaluationInfo>
+                    <div>
+                        <p>{avaliacao.nota}</p>
+                        <strong>{avaliacao.User}</strong>
+                    </div>    
+                </EvaluationInfo>    
+        </Container>
+            
     );
 }
