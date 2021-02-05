@@ -7,10 +7,11 @@ import {quartos_hotel} from '../../../store/fetchActions';
  import api from '../../../service/api';
 
 export default function CreatePromo(props){
-    const [NovoPreço, SetNewpreco] = useState();
+    const [Percentagem, SetPercentagem] = useState();
     const [DataDeValidade, SetDataDeValidade] = useState();
     const [DataInit,SetDataInit]=useState();
-    const [QuartoEmProm, SetQuartosEmProm] = useState([]);
+    const [type_and_Category_Quarto, SetTypeCategoryQuarto] = useState("");
+   
     const hotel_owner=props.idhotel
 
 
@@ -28,15 +29,20 @@ export default function CreatePromo(props){
 
     async function handleNewPromo(e){
          e.preventDefault();
-        
+         const type_and_Category=type_and_Category_Quarto.split(',')
          const data = {
-             new_preco:NovoPreço,
+             percentagem:Percentagem,
              valid_data:DataDeValidade,
              init_data: DataInit,
              hotel:hotel_owner,
-             quartos_em_prom:[QuartoEmProm],
+             tipo_quarto:type_and_Category[0],
+             Caract:type_and_Category[1],
          };
-        
+         SetPercentagem('');
+         SetDataDeValidade('')
+         SetDataInit('');
+         SetTypeCategoryQuarto('');
+    
          try{
              await api.post('api.v1/promoçao/', data /*, {
                  headers: {
@@ -55,11 +61,12 @@ export default function CreatePromo(props){
              <Content>
                  <form onSubmit={handleNewPromo}>
                     <div>
-                    <select id="Quartos" value = {QuartoEmProm} onChange ={e => SetQuartosEmProm(e.target.value)}>
-                        <option value='' disabled selected>Selecione o quarto</option>
-                        {!!lengthquarto && Quartos.map(quarto=>(<option value={[quarto.id]}>{quarto.type_bedroom+"/"+quarto.Caract_bedroom}</option>))}
+                    <select id="QuartosTIPE" value = {[type_and_Category_Quarto]} onChange ={e => SetTypeCategoryQuarto(e.target.value)}>
+                        <option value='' disabled selected>Selecione o tipo e a Categoria dos Quartos</option>
+                        {!!lengthquarto && Quartos.map(quarto=>(<option value={quarto.type_bedroom+','+quarto.Caract_bedroom}>{quarto.type_bedroom+'/'+quarto.Caract_bedroom}</option>))}
                         
-                    </select> 
+                    </select>
+                    
                     <input
                         placeholder="data de inicio"
                         value= {DataInit}
@@ -74,9 +81,9 @@ export default function CreatePromo(props){
                         onChange ={e => SetDataDeValidade(e.target.value)}
                     />
                     <input
-                        placeholder="Preço"
-                        value= {NovoPreço}
-                        onChange ={e => SetNewpreco(e.target.value)}
+                        placeholder="Percentagem"
+                        value= {Percentagem}
+                        onChange ={e => SetPercentagem(e.target.value)}
                     />
                     <button className="button" type = "submit">Criar</button>  
                     </div>

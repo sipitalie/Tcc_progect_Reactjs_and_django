@@ -15,10 +15,9 @@ export default function EventCard({evento}){
       }
     return(
         <div className="Evento-card">
-            <button className="btn-Delete"><MdDelete/></button>
+            
             <div className="title-hotel">
-                
-                <h1>Nome do Hotel</h1>
+                {(evento.Nomehotel)&&<h1>{evento.Nomehotel}</h1>}
                 <h2>{evento.title}</h2>     
             </div>
             <div className="class-content-event">
@@ -27,11 +26,13 @@ export default function EventCard({evento}){
             <div className="event-data-detalhes"> 
                 <p>dia: {evento.data_do_evento}</p>
                 <p>publicado a: {evento.data}</p>
-                {/*<Link to={`/eventos/${evento.id}`}><p>ver mais</p></Link>*/}
+                {/*<Link to={`/eventos/${evento.id}`}><p>ver mais</p></Link><button className="btn-Delete"><MdDelete/></button>*/}
             </div>
-            <div  className="lembret-class">
+          { /* <div  className="lembret-class">
                 <div className="definir_or_remover_lembrte" onClick ={Df_rv_lembret}>{definir_or_remover_lembrte}<span><FaBell/></span></div>
-            </div>	           
+            </div>
+          */}	           
         </div> 
     );
 }
+
